@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="{{url_for('dashboard')}}">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('personal')}}">Personal</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  The Lifts
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="{{url_for('personal')}}">Squat</a>
+                  <a class="dropdown-item" href="{{url_for('dashboard')}}">Bench Press</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+              </div>
+                  </li>
+            <li class="nav-item">
+              <a class="logout" href="{{url_for('logout')}}">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+    <div class="input-group mb-3">
+        <form method="POST" action="">
+            <h1>Today's lifts</h1>
+            Date{{ form.date }}
+            <br>
+            Squat{{ form.squat }}lb
+            <br>
+            Bench{{ form.bench }}lb
+            <br>
+            Deadlift{{ form.deadlift }}lb
+            {{ form.submit }}
+        </form>
+    </div> 
+
+    <div>       
+    <img id="picture" src="data:image/png;base64,{{ img_data }}">
+    </div> 
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+</body>
+</html>

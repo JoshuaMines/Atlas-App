@@ -1,0 +1,17 @@
+{
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 4000,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "AtlasApp",
+            "database": "database.db",
+            "username": "Josh"
+        }
+    ]
+}
