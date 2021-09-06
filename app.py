@@ -59,10 +59,30 @@ class liftForm(FlaskForm):
 
     submit =SubmitField("Submit")
 
-#current ls
+#current nutrition
 class nutrition(db.Model):
-    id 
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.DateTime)
+    weight = db.Column(db.Integer())
+    height = db.Column(db.Integer())
 
+
+class nutrition(FlaskForm):
+    date = DateField('Date', format='%Y-%m-%d')
+    weight = IntegerField('weight', [Length(min=1, max=3)])
+    height = IntegerField('Height', [Length(min=1, max=3)])
+
+    submit = SubmitField("Submit")
+
+# class cnutrition(db.Model):
+#     date = db.Column(db.DateTime)
+#     cweight = db.Column(db.Integer())
+    
+
+# class cnutrition(FlaskForm):
+#     date = DateField('Date', format='%Y-%m-%d')
+#     cweight = IntegerField('weight', [Length(min=1, max=3)])
+    
 
 
 #login
@@ -139,7 +159,8 @@ def register():
 def dashboard():
     form = liftForm()
 
-    liftz = lifts(squat=form.squat.data,
+    liftz = lifts(date=form.date.data,
+                squat=form.squat.data,
                     deadlift=form.deadlift.data,
                     bench=form.bench.data)
     db.session.add(liftz)
@@ -155,6 +176,29 @@ def personal():
                         benchg=form.benchg.data)
     db.session.add(goalz)
     db.session.commit()
+
+    return render_template('personal.html', form=form)
+
+# @app.route('/personal', methods = ['POST', 'GET'])
+# def nutrition():
+#     form = nutritionForm()
+
+#     nutritionz = nutrition(weight=form.weight.data,
+#                             height=form.height.data)
+#     db.session.add(nutritionz)
+#     db.session.commit()
+
+#     return render_template('personal.html', form=form)
+
+# @app.route('/personal', methods = ['POST', 'GET'])
+# def cnutrition():
+#     form = cnutritionForm()
+
+#     cnutritionz = cnutrition(date=form.date.data,
+#                             cweight=form.cweight.data)
+                            
+#     db.session.add(cnutritionz)
+#     db.session.commit()
     
 @app.route('/dashboard', methods=['POST', 'GET'])
 def show_image():
@@ -173,13 +217,16 @@ def show_image():
             linestyle='--' 
             )
 
-    plt.save('generated_plot.png')
+    plt.savefig('generated_plot.png', format='png')
+    plt.show()
+    plt.close()
     im = Image.open("generated_plot.png") #Open the generated image
     data = io.BytesIO() 
     im.save(data, "png")
     encoded_img_data = base64.b64encode(data.getvalue())
+    img=encoded_img_data.decode('utf-8')
 
-    return render_template("dashboard.html", img=encoded_img_data.decode('utf-8'))
+    return render_template("dashboard.html", name='stuff', url='/static/images/generated_plot.png' )
  
 if __name__== '__main__':
     app.run(debug=True, port=4000)

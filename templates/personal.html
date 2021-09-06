@@ -49,10 +49,10 @@
         </div>
       </div>
 
-      <div class="container">
+    <div class="container">
         <div class="row">
           <div class="col-sm">
-           <div class="input-group mb-3">
+           
     <div>
         <h2>Workout Goals</h2>
         <br>
@@ -67,16 +67,30 @@
             {{ form.submit }}
         </form>
     </div>
-    </div>   
-          </div>
-          <div class="col-sm">
-            Nutrition stuff
-          </div>
+
+           
+<div>
+    <h2>Nutrition Goals</h2>
+    <br>
+    <p>Put your workout goals in the area below.  Remember they have to total 1000lb!</p>
+    <form method="POST" action="">
+        Date {{ form.date }}
+        <br>
+        Weight {{ form.weight }} lb
+        <br>
+        Height {{ form.height }} inches
+        <br>
+        {{ form.submit }}
+    </form>
+</div>
+    
+</div>   
+
           <div class="col-sm">
             One of three columns
           </div>
         </div>
-      </div>
+      
 
 
     
